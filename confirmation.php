@@ -12,10 +12,13 @@
     $isValid=true;
 //Thank you message with the name of the person printed
 $name= $_POST['name'];
-
+$realName=preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name);
 if(!empty($name)) {
-    if (preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name)) {
+    if ($realName) {
         echo "Thank you, " . $name . ", for your order!" . "<br>" . "<br>";
+    }
+    else{
+        echo "<p>Please enter a valid name</p>";
     }
 }
 else {
@@ -27,9 +30,11 @@ else {
 $flavors = $_POST['flavors'];
 
 if (isset($flavors)) {
-    echo 'Order Summary:' . '<br>' . '<br>';
-    foreach ($flavors as $key => $value) {
-        echo $value . '<br>'. '<br>';
+    if ($realName) {
+        echo 'Order Summary:' . '<br>' . '<br>';
+        foreach ($flavors as $key => $value) {
+            echo $value . '<br>' . '<br>';
+        }
     }
 } else {
     echo "You haven't selected any flavor";
@@ -41,9 +46,11 @@ $count = count($checked_arr);
 
 //Each cupcake is $3.50 sum the cupcakes selected and print the total
 if(isset($flavors)){
-    if($count >= 1) {
-        $sum = 3.50 * $count;
-        echo "Order Total: \$" . $sum;
+    if($realName){
+        if($count >= 1) {
+            $sum = 3.50 * $count;
+            echo "Order Total: \$" . $sum;
+        }
     }
     else{
         $isValid=false;
