@@ -3,7 +3,10 @@
 /**
  * @author Imelda Medina
  * @version 1.0
+ * index.php
  * 1/10/2020
+ * This program is for a cupcake fundraiser where a client can buy 7 different kinds of cupcakes this form will
+ * capture the client's information and send it to a confirmation page.
  */
 $name=$_POST['name'];
 //Turn on error reporting
