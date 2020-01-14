@@ -7,7 +7,7 @@
 
 //Thank you message with the name of the person printed
 $name= $_POST['name'];
-if(isset($name)) {
+if(!empty($name)) {
     echo "Thank you, " . $name . ", for your order!" . "<br>" . "<br>";
 }
 
