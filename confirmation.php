@@ -2,13 +2,25 @@
 /**
  * @author Imelda Medina
  * @version 1.0
+ * confirmation.php
  * 1/10/2020
+ * This program will create a thank you message for the client and a
+ * brief description of the order and the total
  */
 
+//validate the data
+    $isValid=true;
 //Thank you message with the name of the person printed
 $name= $_POST['name'];
+
 if(!empty($name)) {
-    echo "Thank you, " . $name . ", for your order!" . "<br>" . "<br>";
+    if (preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name)) {
+        echo "Thank you, " . $name . ", for your order!" . "<br>" . "<br>";
+    }
+}
+else {
+    echo "<p>First name is required</p>";
+    $isValid = false;
 }
 
 //Print the cupcake flavors selected
@@ -21,6 +33,7 @@ if (isset($flavors)) {
     }
 } else {
     echo "You haven't selected any flavor";
+    $isValid = false;
 }
 //Count the flavors selected
 $checked_arr = $_POST['flavors'];
@@ -29,7 +42,10 @@ $count = count($checked_arr);
 //Each cupcake is $3.50 sum the cupcakes selected and print the total
 if(isset($flavors)){
     if($count >= 1) {
-        $sum= 3.50 * $count;
+        $sum = 3.50 * $count;
+        echo "Order Total: \$" . $sum;
     }
-    echo "Order Total: \$".$sum;
+    else{
+        $isValid=false;
+    }
 }
