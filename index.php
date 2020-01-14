@@ -25,7 +25,7 @@ error_reporting(E_ALL);
     <title>Cupcake Fundraiser</title>
     <!--Favicon-->
     <link rel="icon" type="image/jpg" href="images/cupcake.jpg">
-    <link rel="stylesheet" type="text/css" href="cupcakes.css">
+    <link rel="stylesheet" type="text/css" href="css/cupcakes.css">
     <title>Cupcake Fundraiser</title>
 </head>
 <body>
@@ -35,11 +35,11 @@ error_reporting(E_ALL);
     </div>
 </div>
 
-<form action="confirmation.php" method="post">
+<form id="cupcakes-form" action="confirmation.php" method="post">
 
     <div class="form-name">
-        <label for="fName">Your name:</label><br>
-        <input type="text" class="form-control" name="name" value="<?php echo $name; ?>" />
+        <label for="name">Your name:</label><br>
+        <input type="text" class="form-control" name="name" id="name" value="<?php echo $name; ?>" />
         <span class="err" id="err-name">
             Please enter your name</span>
     </div>
@@ -51,20 +51,20 @@ error_reporting(E_ALL);
     "caramel" => "Salted Caramel Cupcake", "velvet" => "Red Velvet", "lemon" => "Lemon Drop", "tiramisu" => "Tiramisu");
 
     foreach($flavors as $key => $flavor){
-        echo "<input type='checkbox' name='flavors[]' value='".$flavors[$key]."'>".$flavor."<br>";
+        echo "<input type='checkbox' name='flavors[]' id= 'flavors[]' value='".$flavors[$key]."'>".$flavor."<br>";
     }
 
     ?>
-
-
-
+    <span class="err" id="err-flavor">Please select at least one flavor</span>
     <div>
-        <button type="submit">Order</button>
+
+        <button id="submit" type="submit" class="btn btn-primary">Order</button>
 
     </div>
 </form>
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="script/cupcakes.js"></script>
 </body>
 </html>
